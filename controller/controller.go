@@ -10,17 +10,17 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-type controller struct {
+type Controller struct {
 	Validate *validator.Validate
 }
 
-func NewController(validate *validator.Validate) *controller {
-	return &controller{
+func NewController(validate *validator.Validate) *Controller {
+	return &Controller{
 		Validate: validate,
 	}
 }
 
-func (c *controller) AddBinary(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (c *Controller) AddBinary(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	requestBody := struct {
 		A string `validate:"required" json:"a"`
 		B string `validate:"required" json:"b"`
@@ -29,6 +29,7 @@ func (c *controller) AddBinary(w http.ResponseWriter, r *http.Request, params ht
 	err := c.Validate.Struct(requestBody)
 
 	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		webResponse := web.WebResponse{
 			Code:   http.StatusBadRequest,
 			Status: "BAD REQUEST",
@@ -39,6 +40,7 @@ func (c *controller) AddBinary(w http.ResponseWriter, r *http.Request, params ht
 		return
 	}
 
+	w.WriteHeader(http.StatusOK)
 	webResponse := web.WebResponse{
 		Code:   http.StatusOK,
 		Status: "Ok",
