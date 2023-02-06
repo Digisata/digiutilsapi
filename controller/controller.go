@@ -49,3 +49,119 @@ func (c *Controller) AddBinary(w http.ResponseWriter, r *http.Request, params ht
 
 	helper.WriteToResponseBody(w, webResponse)
 }
+
+func (c *Controller) IsPalindrome(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	requestBody := struct {
+		A string `validate:"required" json:"a"`
+	}{}
+	helper.ReadFromRequestBody(r, &requestBody)
+	err := c.Validate.Struct(requestBody)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		webResponse := web.WebResponse{
+			Code:   http.StatusBadRequest,
+			Status: "BAD REQUEST",
+			Data:   nil,
+		}
+
+		helper.WriteToResponseBody(w, webResponse)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	webResponse := web.WebResponse{
+		Code:   http.StatusOK,
+		Status: "Ok",
+		Data:   digiutils.IsPalindrome(requestBody.A),
+	}
+
+	helper.WriteToResponseBody(w, webResponse)
+}
+
+func (c *Controller) RomanToInt(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	requestBody := struct {
+		A string `validate:"required" json:"a"`
+	}{}
+	helper.ReadFromRequestBody(r, &requestBody)
+	err := c.Validate.Struct(requestBody)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		webResponse := web.WebResponse{
+			Code:   http.StatusBadRequest,
+			Status: "BAD REQUEST",
+			Data:   nil,
+		}
+
+		helper.WriteToResponseBody(w, webResponse)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	webResponse := web.WebResponse{
+		Code:   http.StatusOK,
+		Status: "Ok",
+		Data:   digiutils.RomanToInt(requestBody.A),
+	}
+
+	helper.WriteToResponseBody(w, webResponse)
+}
+
+func (c *Controller) ContainsDuplicate(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	requestBody := struct {
+		A []int `validate:"required" json:"a"`
+	}{}
+	helper.ReadFromRequestBody(r, &requestBody)
+	err := c.Validate.Struct(requestBody)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		webResponse := web.WebResponse{
+			Code:   http.StatusBadRequest,
+			Status: "BAD REQUEST",
+			Data:   nil,
+		}
+
+		helper.WriteToResponseBody(w, webResponse)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	webResponse := web.WebResponse{
+		Code:   http.StatusOK,
+		Status: "Ok",
+		Data:   digiutils.ContainsDuplicate(requestBody.A),
+	}
+
+	helper.WriteToResponseBody(w, webResponse)
+}
+
+func (c *Controller) IsPowerOfTwo(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	requestBody := struct {
+		A int `validate:"required" json:"a"`
+	}{}
+	helper.ReadFromRequestBody(r, &requestBody)
+	err := c.Validate.Struct(requestBody)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		webResponse := web.WebResponse{
+			Code:   http.StatusBadRequest,
+			Status: "BAD REQUEST",
+			Data:   nil,
+		}
+
+		helper.WriteToResponseBody(w, webResponse)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	webResponse := web.WebResponse{
+		Code:   http.StatusOK,
+		Status: "Ok",
+		Data:   digiutils.IsPowerOfTwo(requestBody.A),
+	}
+
+	helper.WriteToResponseBody(w, webResponse)
+}
