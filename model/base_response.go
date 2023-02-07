@@ -1,37 +1,12 @@
 package model
 
-// swagger:model SuccessResponse
-type SuccessResponse struct {
-	// the http status code
-	//
-	// required: true
-	// example: 200
-	Code int `json:"code"`
-
-	// the http status
-	//
-	// required: true
-	// example: Ok
-	Status string `json:"status"`
-
-	// the actual data
-	//
-	// required: true
-	// example: any
-	Data any `json:"data"`
+type SuccessResult struct {
+	Code   int    `json:"code" example:"200"`
+	Status string `json:"status" example:"Ok"`
+	Data   any    `json:"data"`
 }
 
-// swagger:model FailResponse
-type FailResponse struct {
-	// the http status code
-	//
-	// required: true
-	// example: 400
-	Code int `json:"code"`
-
-	// the http status
-	//
-	// required: true
-	// example: BAD REQUEST
-	Status string `json:"status"`
+type BadRequestResult struct {
+	Code   int    `json:"code" example:"400"`
+	Status string `json:"status" example:"BAD REQUEST"`
 }

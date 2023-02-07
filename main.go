@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 
 	"github.com/Digisata/digiutilsapi/app"
@@ -11,6 +10,13 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// @title           Digiutilsapi Specification
+// @version         1.0.0
+// @description     The purpose of this application is to provide an API for handy tools to solve trivial daily life problems.
+// @termsOfService  http://swagger.io/terms/
+
+// @host      localhost:3000
+// @BasePath  /api/v1
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -23,15 +29,5 @@ func main() {
 	controller := controller.NewController(validate)
 	router := app.NewRouter(controller)
 
-	server := http.Server{
-		Addr:    fmt.Sprintf(":%s", port),
-		Handler: router,
-	}
-
-	fmt.Printf("running on port %s", port)
-
-	err = server.ListenAndServe()
-	if err != nil {
-		panic(err)
-	}
+	router.Logger.Fatal(router.Start(fmt.Sprintf(":%s", port)))
 }
