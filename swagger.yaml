@@ -1,0 +1,235 @@
+basePath: /api/v1
+consumes:
+    - application/json
+definitions:
+    AddBinaryRequest:
+        properties:
+            a:
+                description: The binary string
+                example: "1101"
+                type: string
+                x-go-name: A
+            b:
+                description: The binary string
+                example: "11"
+                type: string
+                x-go-name: B
+        required:
+            - a
+            - b
+        type: object
+        x-go-package: github.com/Digisata/digiutilsapi/model
+    ContainsDuplicateRequest:
+        properties:
+            a:
+                description: The string to be checked for
+                example:
+                    - 1
+                    - 2
+                    - 3
+                    - 1
+                items:
+                    format: int64
+                    type: integer
+                type: array
+                x-go-name: A
+        required:
+            - a
+        type: object
+        x-go-package: github.com/Digisata/digiutilsapi/model
+    FailResponse:
+        properties:
+            code:
+                description: the http status code
+                example: 400
+                format: int64
+                type: integer
+                x-go-name: Code
+            status:
+                description: the http status
+                example: BAD REQUEST
+                type: string
+                x-go-name: Status
+        required:
+            - code
+            - status
+        type: object
+        x-go-package: github.com/Digisata/digiutilsapi/model
+    IsPalindromeRequest:
+        properties:
+            a:
+                description: The string to be checked for
+                example: 'A man, a plan, a canal: Panama'
+                type: string
+                x-go-name: A
+        required:
+            - a
+        type: object
+        x-go-package: github.com/Digisata/digiutilsapi/model
+    IsPowerOfTwoRequest:
+        properties:
+            a:
+                description: The int to be checked for
+                example: 12
+                format: int64
+                type: integer
+                x-go-name: A
+        required:
+            - a
+        type: object
+        x-go-package: github.com/Digisata/digiutilsapi/model
+    RomanToIntRequest:
+        properties:
+            a:
+                description: The roman numeral
+                example: III
+                type: string
+                x-go-name: A
+        required:
+            - a
+        type: object
+        x-go-package: github.com/Digisata/digiutilsapi/model
+    SuccessResponse:
+        properties:
+            code:
+                description: the http status code
+                example: 200
+                format: int64
+                type: integer
+                x-go-name: Code
+            data:
+                description: the actual data
+                example: any
+                x-go-name: Data
+            status:
+                description: the http status
+                example: Ok
+                type: string
+                x-go-name: Status
+        required:
+            - code
+            - status
+            - data
+        type: object
+        x-go-package: github.com/Digisata/digiutilsapi/model
+host: localhost:3000
+info:
+    description: "The purpose of this application is to provide an API \nfor handy tools to solve trivial daily life problems."
+    title: Digiutils API
+    version: 1.0.0
+paths:
+    /add_binary:
+        post:
+            operationId: addBinary
+            parameters:
+                - description: 'name: body'
+                  in: body
+                  name: body
+                  required: true
+                  schema:
+                    $ref: '#/definitions/AddBinaryRequest'
+                  x-go-name: Body
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: SuccessResponse
+                    schema:
+                        $ref: '#/definitions/SuccessResponse'
+                "400":
+                    description: FailResponse
+                    schema:
+                        $ref: '#/definitions/FailResponse'
+    /contains_duplicate:
+        post:
+            operationId: containsDuplicate
+            parameters:
+                - description: 'name: body'
+                  in: body
+                  name: body
+                  required: true
+                  schema:
+                    $ref: '#/definitions/ContainsDuplicateRequest'
+                  x-go-name: Body
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: SuccessResponse
+                    schema:
+                        $ref: '#/definitions/SuccessResponse'
+                "400":
+                    description: FailResponse
+                    schema:
+                        $ref: '#/definitions/FailResponse'
+    /is_palindrome:
+        post:
+            operationId: isPalindrome
+            parameters:
+                - description: 'name: body'
+                  in: body
+                  name: body
+                  required: true
+                  schema:
+                    $ref: '#/definitions/IsPalindromeRequest'
+                  x-go-name: Body
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: SuccessResponse
+                    schema:
+                        $ref: '#/definitions/SuccessResponse'
+                "400":
+                    description: FailResponse
+                    schema:
+                        $ref: '#/definitions/FailResponse'
+    /is_power_of_two:
+        post:
+            operationId: isPowerOfTwo
+            parameters:
+                - description: 'name: body'
+                  in: body
+                  name: body
+                  required: true
+                  schema:
+                    $ref: '#/definitions/IsPowerOfTwoRequest'
+                  x-go-name: Body
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: SuccessResponse
+                    schema:
+                        $ref: '#/definitions/SuccessResponse'
+                "400":
+                    description: FailResponse
+                    schema:
+                        $ref: '#/definitions/FailResponse'
+    /roman_to_int:
+        post:
+            operationId: romanToInt
+            parameters:
+                - description: 'name: body'
+                  in: body
+                  name: body
+                  required: true
+                  schema:
+                    $ref: '#/definitions/RomanToIntRequest'
+                  x-go-name: Body
+            produces:
+                - application/json
+            responses:
+                "200":
+                    description: SuccessResponse
+                    schema:
+                        $ref: '#/definitions/SuccessResponse'
+                "400":
+                    description: FailResponse
+                    schema:
+                        $ref: '#/definitions/FailResponse'
+produces:
+    - application/json
+schemes:
+    - http
+swagger: "2.0"
