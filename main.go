@@ -16,20 +16,25 @@ import (
 // @description     The purpose of this application is to provide an API for handy tools to solve trivial daily life problems.
 // @termsOfService  http://swagger.io/terms/
 func main() {
+	host := os.Getenv("DOCS_HOST")
+	port := os.Getenv("PORT")
+	schemes := []string{"https"}
+
 	env := os.Getenv("ENV")
 	if env == "" {
 		err := godotenv.Load()
 		if err != nil {
 			log.Fatal("Error loading .env file")
 		}
+		port = os.Getenv("PORT")
+		host = fmt.Sprintf("%s:%s", os.Getenv("DOCS_HOST"), port)
+		schemes = []string{"http"}
 	}
 
-	port := os.Getenv("PORT")
-
 	spec.SwaggerInfo.Version = os.Getenv("DOCS_VERSION")
-	spec.SwaggerInfo.Host = os.Getenv("DOCS_HOST")
+	spec.SwaggerInfo.Host = host
 	spec.SwaggerInfo.BasePath = os.Getenv("DOCS_BASE_PATH")
-	spec.SwaggerInfo.Schemes = []string{"http", "https"}
+	spec.SwaggerInfo.Schemes = schemes
 
 	validate := validator.New()
 	controller := controller.NewController(validate)
