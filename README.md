@@ -6,6 +6,10 @@
 
 This simple app is the implementation of my [digiutils](https://github.com/Digisata/digiutilsapi) library, and also one form of [#100DaysOfCode](https://www.100daysofcode.com/) movement 🏃‍♂️. There is a [docker image](https://hub.docker.com/r/digisata/digiutilsapi) 🐋 version as well and if you find it useful please give it a star ⭐ or even do your [contribution](#contributing). Cheers 🥂
 
+## Live Demo
+
+You can check the live demo [here](https://digiutilsapi-production.up.railway.app/swagger/index.html).
+
 ## Prerequisites
 
 - `Go 1.19.3` or higher.
