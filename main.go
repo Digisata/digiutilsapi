@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/Digisata/digiutilsapi/spec"
 	"os"
 
 	"github.com/Digisata/digiutilsapi/app"
@@ -11,12 +12,8 @@ import (
 )
 
 // @title           Digiutilsapi Specification
-// @version         1.0.0
 // @description     The purpose of this application is to provide an API for handy tools to solve trivial daily life problems.
 // @termsOfService  http://swagger.io/terms/
-
-// @host      localhost:3000
-// @BasePath  /api/v1
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -24,6 +21,11 @@ func main() {
 	}
 
 	port := os.Getenv("PORT")
+
+	spec.SwaggerInfo.Version = os.Getenv("DOCS_VERSION")
+	spec.SwaggerInfo.Host = os.Getenv("DOCS_HOST")
+	spec.SwaggerInfo.BasePath = os.Getenv("DOCS_BASE_PATH")
+	spec.SwaggerInfo.Schemes = []string{"http", "https"}
 
 	validate := validator.New()
 	controller := controller.NewController(validate)

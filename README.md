@@ -19,9 +19,9 @@ This simple app is the implementation of my [digiutils](https://github.com/Digis
 ```shell
 go mod tidy
 ```
-- After that run the command below to generate `swagger.yaml` file.
+- After that run the command below to generate the required files for swaggo.
 ```shell
-swag init
+swag init -o spec
 ```
 - Finally, run the project.
 ```shell
