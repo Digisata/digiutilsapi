@@ -47,5 +47,6 @@ go.work
 .env
 .idea/
 vendor/
+docs/
 
 # End of https://www.toptal.com/developers/gitignore/api/go,visualstudiocode

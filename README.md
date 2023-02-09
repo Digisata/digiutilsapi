@@ -25,7 +25,7 @@ go mod tidy
 ```
 - After that run the command below to generate the required files for swaggo.
 ```shell
-swag init -o spec
+swag init
 ```
 - Finally, run the project.
 ```shell

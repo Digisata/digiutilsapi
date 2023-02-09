@@ -2,7 +2,7 @@ package app
 
 import (
 	"github.com/Digisata/digiutilsapi/controller"
-	_ "github.com/Digisata/digiutilsapi/spec"
+	_ "github.com/Digisata/digiutilsapi/docs"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/swaggo/echo-swagger"

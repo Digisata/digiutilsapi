@@ -6,6 +6,6 @@ COPY go.mod .
 COPY go.sum .
 RUN go mod download
 COPY . .
-RUN swag init -o spec
+RUN swag init
 RUN go build -o ./out/dist .
 CMD ["./out/dist"]

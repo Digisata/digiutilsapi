@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/Digisata/digiutilsapi/spec"
+	"github.com/Digisata/digiutilsapi/docs"
 	"github.com/joho/godotenv"
 	"log"
 	"os"
@@ -16,7 +16,7 @@ import (
 // @description     The purpose of this application is to provide an API for handy tools to solve trivial daily life problems.
 // @termsOfService  http://swagger.io/terms/
 func main() {
-	host := os.Getenv("DOCS_HOST")
+	host := os.Getenv("HOST")
 	port := os.Getenv("PORT")
 	schemes := []string{"https"}
 
@@ -27,18 +27,18 @@ func main() {
 			log.Fatal("Error loading .env file")
 		}
 		port = os.Getenv("PORT")
-		host = fmt.Sprintf("%s:%s", os.Getenv("DOCS_HOST"), port)
+		host = fmt.Sprintf("%s:%s", os.Getenv("HOST"), port)
 		schemes = []string{"http"}
 	}
 
-	spec.SwaggerInfo.Version = os.Getenv("DOCS_VERSION")
-	spec.SwaggerInfo.Host = host
-	spec.SwaggerInfo.BasePath = os.Getenv("DOCS_BASE_PATH")
-	spec.SwaggerInfo.Schemes = schemes
+	docs.SwaggerInfo.Version = os.Getenv("DOCS_VERSION")
+	docs.SwaggerInfo.Host = host
+	docs.SwaggerInfo.BasePath = os.Getenv("BASE_PATH")
+	docs.SwaggerInfo.Schemes = schemes
 
 	validate := validator.New()
-	controller := controller.NewController(validate)
-	router := app.NewRouter(controller)
+	c := controller.NewController(validate)
+	router := app.NewRouter(c)
 
 	router.Logger.Fatal(router.Start(fmt.Sprintf(":%s", port)))
 }

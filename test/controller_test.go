@@ -16,8 +16,8 @@ import (
 
 func setupRouter() http.Handler {
 	validate := validator.New()
-	controller := controller.NewController(validate)
-	router := app.NewRouter(controller)
+	c := controller.NewController(validate)
+	router := app.NewRouter(c)
 
 	return router
 }
