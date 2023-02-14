@@ -8,4 +8,8 @@ services:
     ports:
       - '3001:3001'
     environment:
-      PORT: 3001
+      - ENV=${ENV}
+      - PORT=${PORT}
+      - DOCS_VERSION=${DOCS_VERSION}
+      - HOST=${HOST}
+      - BASE_PATH=${BASE_PATH}

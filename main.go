@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/Digisata/digiutilsapi/docs"
-	"github.com/joho/godotenv"
 	"log"
 	"os"
 
+	"github.com/joho/godotenv"
+
 	"github.com/Digisata/digiutilsapi/app"
 	"github.com/Digisata/digiutilsapi/controller"
+	"github.com/Digisata/digiutilsapi/docs"
 	"github.com/go-playground/validator/v10"
 )
 
