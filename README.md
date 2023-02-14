@@ -8,7 +8,7 @@ This simple app is the implementation of my [digiutils](https://github.com/Digis
 
 ## Live Demo
 
-You can check the live demo [here](https://digiutilsapi-production.up.railway.app/swagger/index.html).
+You can check the live demo [here](https://empty-impala-87.a276.dcdg.xyz/swagger/index.html).
 
 ## Prerequisites
 
